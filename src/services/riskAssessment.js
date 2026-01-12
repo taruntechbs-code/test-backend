@@ -90,7 +90,7 @@ export async function assessRecipientRisk(recipientAddress) {
   }
 }
 
-/**
+/*
  * Add address to confidential blacklist (admin function)
  * In production, this would encrypt and store on-chain using INCO
  */
@@ -106,7 +106,7 @@ export async function addToBlacklist(address) {
   }
 }
 
-/**
+/*
  * Get risk statistics (confidential computation)
  * Returns aggregated data without exposing individual addresses
  */

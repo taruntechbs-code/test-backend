@@ -12,9 +12,9 @@ console.log(
 
 router.post("/send", async (req, res) => {
   try {
-    // ============================================
+    // ===========================================
     // DEBUG: Log received data
-    // ============================================
+    // ===========================================
     console.log("\n=== INCOMING REQUEST ===");
     console.log("Full request body:", JSON.stringify(req.body, null, 2));
     console.log("sender:", req.body.sender);
