@@ -53,7 +53,7 @@ export async function assessRecipientRisk(recipientAddress) {
     
     // HIGH RISK: Blacklisted addresses
     if (HIGH_RISK_ADDRESSES.includes(address)) {
-      console.log(`[INCO Risk Assessment] ❌ HIGH RISK - Blacklisted address`);
+      console.log(`[INCO Risk Assessment]  HIGH RISK - Blacklisted address`);
       return {
         safe: false,
         riskLevel: "HIGH",
@@ -63,7 +63,7 @@ export async function assessRecipientRisk(recipientAddress) {
     
     // MEDIUM RISK: Suspicious patterns
     if (isMediumRisk(address)) {
-      console.log(`[INCO Risk Assessment] ⚠️ MEDIUM RISK - Suspicious pattern`);
+      console.log(`[INCO Risk Assessment]  MEDIUM RISK - Suspicious pattern`);
       return {
         safe: true, // Allow but log warning
         riskLevel: "MEDIUM",
@@ -72,7 +72,7 @@ export async function assessRecipientRisk(recipientAddress) {
     }
     
     // LOW RISK: Safe to proceed
-    console.log(`[INCO Risk Assessment] ✅ LOW RISK - Safe to proceed`);
+    console.log(`[INCO Risk Assessment]  LOW RISK - Safe to proceed`);
     return {
       safe: true,
       riskLevel: "LOW",

@@ -1,4 +1,4 @@
-console.log("🔴 TRANSFER.JS FILE LOADED 🔴");
+console.log("--TRANSFER.JS FILE LOADED--");
 import express from "express";
 import { sendMockUSDC } from "../services/transferService.js";
 import { assessRecipientRisk } from "../services/riskAssessment.js";
@@ -16,17 +16,17 @@ router.post("/send", async (req, res) => {
     // DEBUG: Log received data
     // ============================================
     console.log("\n=== INCOMING REQUEST ===");
-    console.log("📥 Full request body:", JSON.stringify(req.body, null, 2));
-    console.log("📊 sender:", req.body.sender);
-    console.log("📊 recipient:", req.body.recipient);
-    console.log("📊 amount:", req.body.amount);
-    console.log("📊 amount type:", typeof req.body.amount);
+    console.log("Full request body:", JSON.stringify(req.body, null, 2));
+    console.log("sender:", req.body.sender);
+    console.log("recipient:", req.body.recipient);
+    console.log("amount:", req.body.amount);
+    console.log("amount type:", typeof req.body.amount);
     console.log("========================\n");
     
     const { sender, recipient, amount } = req.body;
 
     if (!sender || !recipient || !amount) {
-      console.log("❌ Validation failed - missing fields");
+      console.log("Validation failed - missing fields");
       return res.status(400).json({
         error: "sender, recipient and amount are required",
         received: { sender, recipient, amount }
@@ -45,7 +45,7 @@ router.post("/send", async (req, res) => {
     
     // Block HIGH RISK transactions
     if (!riskAssessment.safe) {
-      console.log("[INCO] ❌ Transaction BLOCKED");
+      console.log("[INCO] Transaction BLOCKED");
       return res.status(403).json({
         error: "Transaction blocked by security layer",
         riskLevel: riskAssessment.riskLevel,
@@ -56,13 +56,13 @@ router.post("/send", async (req, res) => {
     
     // Log warning for MEDIUM RISK but allow transaction
     if (riskAssessment.riskLevel === "MEDIUM") {
-      console.log("[INCO] ⚠️ Transaction allowed with warning");
+      console.log("[INCO] Transaction allowed with warning");
     }
     
-    console.log("[INCO] ✅ Risk assessment passed - proceeding with transfer\n");
+    console.log("[INCO] Risk assessment passed - proceeding with transfer\n");
     // ============================================
 
-    console.log("🚀 Calling sendMockUSDC with:", { sender, recipient, amount });
+    console.log("Calling sendMockUSDC with:", { sender, recipient, amount });
     
     // CRITICAL: Pass as object with curly braces
     const result = await sendMockUSDC({ sender, recipient, amount });
@@ -76,7 +76,7 @@ router.post("/send", async (req, res) => {
       }
     });
   } catch (err) {
-    console.error("❌ Error in /send route:", err);
+    console.error("Error in /send route:", err);
     res.status(500).json({
       error: err.message || "Transfer failed"
     });
